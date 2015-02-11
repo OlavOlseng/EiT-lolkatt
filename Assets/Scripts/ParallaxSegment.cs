@@ -6,8 +6,7 @@ public class ParallaxSegment : MonoBehaviour
 		
 	public float startX;
 	public float duration;
-	public Vector3 startKeyFrame;
-	public Vector3 endKeyframe;
+	public Vector3 translation;
 
 	// Use this for initialization
 	void Start ()
@@ -18,17 +17,21 @@ public class ParallaxSegment : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		MainParallaxer p = (GameObject.FindGameObjectWithTag ("Parallaxer")).GetComponent<MainParallaxer>();
 
+
+	}
+
+	public Vector3 getTranslation(float x)
+	{
 		float progression = 0.0f;
-
-		if (p.x > startX + duration) {
+		
+		if (x > startX + duration) {
 			progression = 1.0f;
 		}
-		else if (startX < p.x) {
-			progression = (p.x - startX) / (startX + duration);
+		else if (startX < x) {
+			progression = (x - startX) / duration;
 		}
-		transform.position = Vector3.Lerp (startKeyFrame, endKeyframe, progression * 2);
+		return Vector3.Lerp (new Vector3(), translation, progression);
 	}
 }
 
