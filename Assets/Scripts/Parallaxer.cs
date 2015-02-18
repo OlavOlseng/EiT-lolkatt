@@ -6,6 +6,7 @@ public class Parallaxer : MonoBehaviour {
 	private Vector3 initialPosition;
 	private Vector3 initialScale;
 	private Quaternion initialRotation;
+	private Color initialColor;
 	public ParallaxSegment[] segments;
 
 	// Use this for initialization
@@ -13,6 +14,7 @@ public class Parallaxer : MonoBehaviour {
 		this.initialPosition = transform.position;
 		this.initialScale = transform.localScale;
 		this.initialRotation = transform.rotation;
+		this.initialColor = GetComponent<SpriteRenderer> ().color;
 	}
 	
 	// Update is called once per frame
@@ -20,23 +22,13 @@ public class Parallaxer : MonoBehaviour {
 		transform.position = initialPosition;
 		transform.localScale = initialScale;
 		transform.localRotation = initialRotation;
+		this.initialColor = GetComponent<SpriteRenderer> ().color = initialColor;
 
 		GlobalParallaxer p = (GameObject.FindGameObjectWithTag("GlobalParallaxer")).GetComponent<GlobalParallaxer>();
 		foreach (ParallaxSegment ps in segments) 
 		{
 			string type = ps.getSegmentType();
-			if (type == ParallaxSegment.SEGMENT_TYPE_TRANSLATION) 
-			{
-				transform.position += (Vector3) (ps.progress(p.x));
-			}
-			else if (type == ParallaxSegment.SEGMENT_TYPE_SCALE) 
-			{
-				transform.localScale += (Vector3) (ps.progress(p.x));
-			}
-			else if (type == ParallaxSegment.SEGMENT_TYPE_ROTATE) 
-			{
-				transform.Rotate((Vector3)(ps.progress(p.x)));
-			}
+				ps.progress(p.x);
 		}
 	}
 }

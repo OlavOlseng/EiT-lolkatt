@@ -12,9 +12,9 @@ public class TranslationSegment : ParallaxSegment {
 
 
 
-	override public System.Object progress(float x) 
+	override public void progress(float x) 
 	{
 		float progression = getProgression (x);
-		return Vector3.Lerp (new Vector3 (), translation, progression);
+		transform.position += Vector3.Lerp (new Vector3 (), translation, progression);
 	}
 }

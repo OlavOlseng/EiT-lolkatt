@@ -11,6 +11,7 @@ public abstract class ParallaxSegment : MonoBehaviour
 	public static readonly string SEGMENT_TYPE_TRANSLATION = "trans";
 	public static readonly string SEGMENT_TYPE_SCALE = "scale";
 	public static readonly string SEGMENT_TYPE_ROTATE = "rot";
+	public static readonly string SEGMENT_TYPE_ALPHA = "alpha";
 
 	// Use this for initialization
 	void Start ()
@@ -42,7 +43,7 @@ public abstract class ParallaxSegment : MonoBehaviour
 		return progression;
 	}
 
-	public abstract System.Object progress(float x);
+	public abstract void progress(float x);
 	
 }
 

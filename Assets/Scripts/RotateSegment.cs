@@ -9,10 +9,10 @@ public class RotateSegment : ParallaxSegment {
 		this.segmentType = ParallaxSegment.SEGMENT_TYPE_ROTATE;
 	}
 
-	override public System.Object progress(float x) 
+	override public void progress(float x) 
 	{
 		float progression = getProgression (x);
-		return Vector3.Lerp (new Vector3(), this.rotation, progression);
+		transform.Rotate(Vector3.Lerp (new Vector3(), this.rotation, progression));
 
 	}
 }

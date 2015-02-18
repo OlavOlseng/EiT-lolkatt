@@ -10,9 +10,9 @@ public class ScalingSegment : ParallaxSegment {
 		this.segmentType = ParallaxSegment.SEGMENT_TYPE_SCALE;
 	}
 
-	override public System.Object progress(float x)
+	override public void progress(float x)
 	{
 		float progression = getProgression (x);
-		return Vector3.Lerp (new Vector3 (), scaleChange, progression);
+		transform.localScale += Vector3.Lerp (new Vector3 (), scaleChange, progression);
 	}
 }
