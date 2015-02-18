@@ -14,8 +14,12 @@ public class SoundTriggerSegment : ParallaxSegment {
 		if (progress > 0.0f && progress <= 1.0f) 
 		{
 			if (!fired && previousX < startX) {
+				print("Fired sound");
 				fired = true;
-				source.Play();
+				if(source.clip.isReadyToPlay) {
+					print("Sound triggered");
+					source.Play();
+				}
 			}
 		}
 		else 
