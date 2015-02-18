@@ -19,6 +19,7 @@ public class Parallaxer : MonoBehaviour {
 	void Update () {
 		transform.position = initialPosition;
 		transform.localScale = initialScale;
+		transform.localRotation = initialRotation;
 
 		GlobalParallaxer p = (GameObject.FindGameObjectWithTag("GlobalParallaxer")).GetComponent<GlobalParallaxer>();
 		foreach (ParallaxSegment ps in segments) 
@@ -30,11 +31,11 @@ public class Parallaxer : MonoBehaviour {
 			}
 			else if (type == ParallaxSegment.SEGMENT_TYPE_SCALE) 
 			{
-					transform.localScale += (Vector3) (ps.progress(p.x));
+				transform.localScale += (Vector3) (ps.progress(p.x));
 			}
 			else if (type == ParallaxSegment.SEGMENT_TYPE_ROTATE) 
 			{
-
+				transform.Rotate((Vector3)(ps.progress(p.x)));
 			}
 		}
 	}
