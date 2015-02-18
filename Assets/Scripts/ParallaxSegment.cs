@@ -5,7 +5,6 @@ public abstract class ParallaxSegment : MonoBehaviour
 {
 		
 	public float startX;
-	public Vector3 translation;
 	public float duration;
 	protected string segmentType = null;
 
@@ -29,6 +28,18 @@ public abstract class ParallaxSegment : MonoBehaviour
 	public string getSegmentType() 
 	{
 		return this.segmentType;
+	}
+
+	protected float getProgression(float x) 
+	{
+		float progression = 0.0f;
+		
+		if (x > startX + duration) {
+			progression = 1.0f;
+		} else if (startX < x) {
+			progression = (x - startX) / duration;
+		}
+		return progression;
 	}
 
 	public abstract System.Object progress(float x);
