@@ -1,12 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
-public class ParallaxSegment : MonoBehaviour
+public abstract class ParallaxSegment : MonoBehaviour
 {
 		
 	public float startX;
-	public float duration;
 	public Vector3 translation;
+	public float duration;
+	protected string segmentType = null;
+
+	public static readonly string SEGMENT_TYPE_TRANSLATION = "trans";
+	public static readonly string SEGMENT_TYPE_SCALE = "scale";
+	public static readonly string SEGMENT_TYPE_ROTATE = "rot";
 
 	// Use this for initialization
 	void Start ()
@@ -21,17 +26,12 @@ public class ParallaxSegment : MonoBehaviour
 
 	}
 
-	public Vector3 getTranslation(float x)
+	public string getSegmentType() 
 	{
-		float progression = 0.0f;
-		
-		if (x > startX + duration) {
-			progression = 1.0f;
-		}
-		else if (startX < x) {
-			progression = (x - startX) / duration;
-		}
-		return Vector3.Lerp (new Vector3(), translation, progression);
+		return this.segmentType;
 	}
+
+	public abstract System.Object progress(float x);
+	
 }
 

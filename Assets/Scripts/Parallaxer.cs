@@ -15,10 +15,22 @@ public class Parallaxer : MonoBehaviour {
 	void Update () {
 		transform.position = initialPosition;
 
-		MainParallaxer p = (GameObject.FindGameObjectWithTag ("Parallaxer")).GetComponent<MainParallaxer>();
+		GlobalParallaxer p = (GameObject.FindGameObjectWithTag("GlobalParallaxer")).GetComponent<GlobalParallaxer>();
 		foreach (ParallaxSegment ps in segments) 
 		{
-			transform.position += ps.getTranslation(p.x);
+			string type = ps.getSegmentType();
+			if (type == ParallaxSegment.SEGMENT_TYPE_TRANSLATION) 
+			{
+				transform.position += (Vector3) (ps.progress(p.x));
+			}
+			else if (type == ParallaxSegment.SEGMENT_TYPE_SCALE) 
+			{
+
+			}
+			else if (type == ParallaxSegment.SEGMENT_TYPE_ROTATE) 
+			{
+
+			}
 		}
 	}
 }
