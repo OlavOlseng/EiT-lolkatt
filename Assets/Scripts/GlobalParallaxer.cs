@@ -17,6 +17,9 @@ public class GlobalParallaxer : MonoBehaviour {
 	public float dxMax = 100;
 	public float speed = 10.0f;
 
+	public string previousScene = "";
+	public string nextScene = "";
+
 	// Use this for initialization
 	void Start () {
 		
@@ -61,6 +64,7 @@ public class GlobalParallaxer : MonoBehaviour {
 
 		if (dx > dxMax) {
 			dx = dxMax;
+
 		} 
 		else if (dx < -dxMax) {
 			dx = -dxMax;
@@ -73,10 +77,16 @@ public class GlobalParallaxer : MonoBehaviour {
 		if (x > xMax) {
 			x = xMax;
 			dx = 0;
+			if(!nextScene.Equals("")){
+				Application.LoadLevel(nextScene);
+			}
 		}
 		else if (x < 0) {
 			x = 0;
 			dx = 0;
+			if(!previousScene.Equals("")){
+				Application.LoadLevel(previousScene);
+			}
 		}
 	}
 }
