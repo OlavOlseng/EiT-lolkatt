@@ -56,7 +56,7 @@ public class GlobalParallaxer : MonoBehaviour {
 			}
 		} 
 		else {
-			ddx = Input.GetAxis ("Horizontal");
+			ddx = Input.GetAxis ("Horizontal") * 0.5f;
 		}
 		dx -= (dx * dampening);
 		dx += ddx * speed * speedMultiplier;
